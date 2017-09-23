@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Beauty Mind</title>
+
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'quill/quill.snow.css' %}">
+    {# MEDIUM STYLE EDITOR#}
+    <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+<!-- https://quilljs.com/docs/quickstart/ -->
+
+  </head>
+  <body>
+
+    <nav class='navbar mynav navbar-expand-lg navbar-dark bg-dark' role='navigation' id='navbar'>
+      <a class='navbar-brand mynav' href="{% url 'posts:post_list' %}">Home</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class='navbar-nav mr-auto'>
+            <li class="nav-item"><a class="nav-link" href="#">About me</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/thebeautymind_/">Instagram</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/KTGuerin/?fref=ts">Facebook</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://twitter.com/GuerinKatie">Twitter</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/profile/view?id=391042409&trk=nav_responsive_tab_profile">Linkedin</a></li>
+          </ul>
+
+          <ul class='navbar-nav navbar-right'>
+            {% if user.is_authenticated %}
+
+              <li class="nav-item"><a class="nav-link" href="{% url 'posts:post_new' %}">New Post</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'posts:post_draft_list' %}">Drafts</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Log Out</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Logged in as: {{user.username}}</a></li>
+
+            {% else %}
+              <li><a class='nav-link' href="{% url 'accounts:login' %}"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
+            {% endif %}
+
+          </ul>
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+      {% block bodyblock %}
+      {% endblock bodyblock %}
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/master.js' %}"></script>
+    <script type="text/javascript" src="{% static 'quill/quill.min.js' %}"></script>
+
+
+  </body>
+</html>

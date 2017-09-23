@@ -1,0 +1,16 @@
+
+<div class="container">
+
+  <h4>{{ comment.author }}</h4>
+  <p>{{comment.text_html|safe}}</p>
+  <p class='small-time'> {{comment.created_date}} </p>
+
+{% if user.is_authenticated %}
+    {% if comment.author == user %}
+    <a class="btn btn-secondary" href="{% url 'comments:comment_remove' pk=comment.pk %}">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+    {% endif %}
+{% endif %}
+
+</div>

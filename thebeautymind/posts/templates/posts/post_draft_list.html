@@ -1,0 +1,18 @@
+{% extends "posts/post_base.html" %}
+
+{% block post_content %}
+
+{% for post in post_list %}
+
+  <div class="post col-md-8">
+
+      <h1><a href="{% url 'posts:detail' slug=post.slug %}">{{ post.title }}</a></h1>
+      <h3>{{ post.second_title }}</h3>
+      <p class="date">created: {{ post.created_date|date:'D d M Y' }}</p>
+      <p>{{ post.text|safe|truncatechars:200 }}</p>
+
+  </div>
+<br>
+{% endfor %}
+
+{% endblock post_content %}

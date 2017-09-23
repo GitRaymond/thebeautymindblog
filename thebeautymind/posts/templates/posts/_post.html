@@ -1,0 +1,25 @@
+<h1 class='posttitle'>{{post.title}}</h1>
+<h2 class='posttitle'>{{post.second_title}}</h2>
+{% if post.published_date %}
+<div class="date postdate">
+  {{post.published_date}}
+</div>
+{% endif %}
+
+<p class='postcontent '> {{ post.text|safe|linebreaksbr}} </p>
+
+
+{% if user.is_authenticated %}
+  {% if not post.published_date %}
+
+  <a class="btn btn-secondary" href="{% url 'posts:post_publish' slug=post.slug %}">Publish</a>
+  {% endif %}
+
+  <a class="btn btn-secondary" href="{% url 'posts:post_edit' slug=post.slug %}">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </a>
+  <a class="btn btn-secondary" href="{% url 'posts:post_remove' slug=post.slug %}">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </a>
+
+{% endif %}

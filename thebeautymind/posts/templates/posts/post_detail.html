@@ -1,0 +1,19 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap4 %}
+{% block post_content %}
+
+<div class="col-md-8">
+  {% include "posts/_post.html" %}
+</div>
+
+<div class="col-md-8">
+  {% include "comments/comment_form.html" %}
+</div>
+
+{% for comment in post.postcomments.all %}
+  <div class="comments-space col-md-8">
+    {% include "comments/_comment.html" %}
+  </div>
+{% endfor %}
+
+{% endblock post_content %}
